@@ -1,0 +1,29 @@
+language: generic 
+
+services:
+  - docker
+
+# before_install:
+#   - docker build -t icarus2io/react-test -f ./client/Dockerfile.dev ./client
+
+# script:
+#   - docker run -e CI=true icarus2io/react-test npm test
+
+after_success:
+  - docker build -t icarus2io/icarus-cloud-redis .
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push icarus2io/icarus-cloud-redis
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: 'us-west-1'
+#   app: 'g8keeper.io'
+#   env: 'G8keeperio-env'
+#   bucket_name: 'elasticbeanstalk-us-west-1-473472325949'
+#   bucket_path: 'g8keeper.io'
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
