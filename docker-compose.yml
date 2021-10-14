@@ -4,6 +4,9 @@ services:
   redis:
     container_name: icarus-cloud-redis
     build: .
+    env_file: ./.env
+    command:
+      --requirepass ${REDIS_PASSWORD} 
     ports:
       - "6380:6379"
     expose:
