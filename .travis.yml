@@ -18,6 +18,6 @@ deploy:
   bucket_name: 'elasticbeanstalk-us-west-1-473472325949'
   bucket_path: 'icarus-redis'
   on:
-    branch: master
+    branch: main
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
